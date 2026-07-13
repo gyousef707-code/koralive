@@ -1,0 +1,26 @@
+{
+  "name": "كورة لايف - اخبار كرة القدم ونتائج مباشرة",
+  "short_name": "كورة لايف",
+  "description": "تابع اخبار كرة القدم، النتائج المباشرة، الجداول والاحصائيات من جميع انحاء العالم",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f1a",
+  "theme_color": "#1a1a2e",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "./assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["sports", "news"]
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="كورة لايف - اخبار كرة القدم، نتائج مباشرة، جداول، احصائيات وجميع البطولات العالمية والعربية">
+    <meta name="keywords" content="كورة لايف, كرة القدم, اخبار, نتائج مباشرة, مباريات, الدوري الانجليزي, دوري ابطال اوروبا">
+    <meta name="author" content="كورة لايف">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="manifest" href="manifest.json">
+    <title>كورة لايف | اخبار كرة القدم ونتائج مباشرة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- شريط التنبيهات -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span class="ticker-label">🔴 عاجل:</span>
+            <span id="ticker-text">جاري تحميل الاخبار العاجلة...</span>
+        </div>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="./" class="logo">
+                    <span class="logo-icon">⚽</span>
+                    <span class="logo-text">كورة <span class="highlight">لايف</span></span>
+                </a>
+            </div>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active" data-section="home">الرئيسية</a></li>
+                    <li><a href="#" class="nav-link" data-section="matches">المباريات</a></li>
+                    <li><a href="#" class="nav-link" data-section="news">الاخبار</a></li>
+                    <li><a href="#" class="nav-link" data-section="standings">الجداول</a></li>
+                    <li><a href="#" class="nav-link" data-section="players">اللاعبين</a></li>
+                    <li><a href="#" class="nav-link" data-section="transfers">الانتقالات</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="search-btn" id="searchBtn" aria-label="بحث">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- شريط البحث -->
+        <div class="search-bar" id="searchBar">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="ابحث عن فريق، لاعب، او بطولة...">
+                <button class="search-close" id="searchClose">✕</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <!-- المباريات المباشرة -->
+        <section class="live-matches-section" id="liveMatches">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="live-dot"></span>
+                    مباريات مباشرة
+                </h2>
+                <div class="match-filters">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="live">مباشر</button>
+                    <button class="filter-btn" data-filter="today">اليوم</button>
+                    <button class="filter-btn" data-filter="tomorrow">غدا</button>
+                </div>
+            </div>
+            <div class="matches-grid" id="matchesGrid">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل المباريات...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- اهم الاخبار -->
+        <section class="news-section" id="newsSection">
+            <div class="section-header">
+                <h2 class="section-title">📰 اهم الاخبار</h2>
+                <a href="#" class="view-all">عرض الكل ←</a>
+            </div>
+            <div class="news-grid" id="newsGrid">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل الاخبار...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- جداول البطولات -->
+        <section class="standings-section" id="standingsSection">
+            <div class="section-header">
+                <h2 class="section-title">🏆 جداول البطولات</h2>
+                <div class="league-tabs">
+                    <button class="league-tab active" data-league="39">الدوري الانجليزي</button>
+                    <button class="league-tab" data-league="140">الدوري الاسباني</button>
+                    <button class="league-tab" data-league="135">الدوري الايطالي</button>
+                    <button class="league-tab" data-league="78">الدوري الالماني</button>
+                    <button class="league-tab" data-league="61">الدوري الفرنسي</button>
+                    <button class="league-tab" data-league="2">دوري ابطال اوروبا</button>
+                </div>
+            </div>
+            <div class="standings-table-container" id="standingsContainer">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل الجدول...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- افضل الهدافين -->
+        <section class="top-scorers-section" id="topScorersSection">
+            <div class="section-header">
+                <h2 class="section-title">⚽ افضل الهدافين</h2>
+            </div>
+            <div class="scorers-grid" id="scorersGrid">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل الاحصائيات...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- الانتقالات الاخيرة -->
+        <section class="transfers-section" id="transfersSection">
+            <div class="section-header">
+                <h2 class="section-title">🔄 اخر الانتقالات</h2>
+            </div>
+            <div class="transfers-list" id="transfersList">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل الانتقالات...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- الشريط الجانبي -->
+    <aside class="sidebar">
+        <!-- المباريات القادمة -->
+        <div class="sidebar-widget">
+            <h3 class="widget-title">📅 مباريات قادمة</h3>
+            <div class="upcoming-matches" id="upcomingMatches">
+                <div class="loading-spinner small">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ترتيب البطولات -->
+        <div class="sidebar-widget">
+            <h3 class="widget-title">🏆 ترتيب الدوريات</h3>
+            <div class="mini-standings" id="miniStandings">
+                <div class="loading-spinner small">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- الفوتر -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <span class="logo-icon">⚽</span>
+                    <span class="logo-text">كورة <span class="highlight">لايف</span></span>
+                </div>
+                <p class="footer-desc">منصتك الاولى لمتابعة اخبار كرة القدم، النتائج المباشرة، والاحصائيات من جميع انحاء العالم.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="فيسبوك">📘</a>
+                    <a href="#" class="social-link" aria-label="تويتر">🐦</a>
+                    <a href="#" class="social-link" aria-label="انستغرام">📷</a>
+                    <a href="#" class="social-link" aria-label="يوتيوب">📺</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">اقسام الموقع</h4>
+                <ul class="footer-links">
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">المباريات المباشرة</a></li>
+                    <li><a href="#">اخبار كرة القدم</a></li>
+                    <li><a href="#">جداول البطولات</a></li>
+                    <li><a href="#">احصائيات اللاعبين</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">البطولات</h4>
+                <ul class="footer-links">
+                    <li><a href="#">الدوري الانجليزي</a></li>
+                    <li><a href="#">الدوري الاسباني</a></li>
+                    <li><a href="#">دوري ابطال اوروبا</a></li>
+                    <li><a href="#">كاس العالم</a></li>
+                    <li><a href="#">دوري ابطال افريقيا</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">معلومات</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                    <li><a href="terms.html">شروط الاستخدام</a></li>
+                    <li><a href="cookies.html">سياسة الكوكيز</a></li>
+                    <li><a href="dmca.html">DMCA</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 كورة لايف. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- زر العودة للاعلى -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للاعلى">↑</button>
+
+    <!-- اشعار الكوكيز -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p>نستخدم الكوكيز لتحسين تجربتك. باستخدامك للموقع، فانك توافق على <a href="cookies.html">سياسة الكوكيز</a>.</p>
+            <button class="cookie-accept" id="cookieAccept">موافق</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

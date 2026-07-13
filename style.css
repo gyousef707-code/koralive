@@ -1,0 +1,1299 @@
+:root {
+    --primary: #e63946;
+    --primary-dark: #c1121f;
+    --secondary: #1d3557;
+    --accent: #457b9d;
+    --success: #2a9d8f;
+    --warning: #e9c46a;
+    --danger: #e63946;
+    --dark: #0f0f1a;
+    --dark-light: #1a1a2e;
+    --dark-lighter: #252540;
+    --gray: #6c757d;
+    --light: #f8f9fa;
+    --white: #ffffff;
+    --gradient-primary: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+    --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.2);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --transition: all 0.3s ease;
+    --font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--dark);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* شريط التنبيهات */
+.news-ticker {
+    background: var(--gradient-primary);
+    padding: 10px 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: ticker-scroll 20s linear infinite;
+    white-space: nowrap;
+}
+
+.ticker-label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+#ticker-text {
+    font-size: 0.9rem;
+}
+
+@keyframes ticker-scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* الهيدر */
+.main-header {
+    background: var(--gradient-dark);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.logo-section {
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.logo-text .highlight {
+    color: var(--primary);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* القائمة الرئيسية */
+.main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-link {
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(230, 57, 70, 0.15);
+    color: var(--primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+/* ازرار الهيدر */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-btn,
+.menu-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-lighter);
+    transition: var(--transition);
+    color: var(--white);
+}
+
+.search-btn:hover,
+.menu-toggle:hover {
+    background: var(--primary);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+
+.menu-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* شريط البحث */
+.search-bar {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: var(--dark-light);
+}
+
+.search-bar.active {
+    max-height: 80px;
+}
+
+.search-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--dark-lighter);
+    background: var(--dark);
+    color: var(--white);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+#searchInput::placeholder {
+    color: var(--gray);
+}
+
+.search-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--dark-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.search-close:hover {
+    background: var(--primary);
+}
+
+/* المحتوى الرئيسي */
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+}
+
+/* رؤوس الاقسام */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.live-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--danger);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.view-all {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.view-all:hover {
+    color: var(--primary-dark);
+}
+
+/* فلاتر المباريات */
+.match-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: var(--radius-xl);
+    background: var(--dark-lighter);
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* تبويبات البطولات */
+.league-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.league-tab {
+    padding: 8px 16px;
+    border-radius: var(--radius-xl);
+    background: var(--dark-lighter);
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.league-tab:hover,
+.league-tab.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* بطاقات المباريات */
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.match-card {
+    background: var(--dark-light);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.match-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(230, 57, 70, 0.3);
+}
+
+.match-card.live::before {
+    content: 'مباشر';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--danger);
+    color: var(--white);
+    padding: 4px 10px;
+    border-radius: var(--radius-xl);
+    font-size: 0.75rem;
+    font-weight: 700;
+    animation: pulse 1.5s infinite;
+}
+
+.match-league {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.match-league img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.match-teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.team-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: var(--dark-lighter);
+    padding: 6px;
+}
+
+.team-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.match-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 80px;
+}
+
+.score {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.match-time {
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.match-status {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+}
+
+.match-status.live {
+    background: rgba(230, 57, 70, 0.2);
+    color: var(--danger);
+}
+
+.match-status.finished {
+    background: rgba(42, 157, 143, 0.2);
+    color: var(--success);
+}
+
+.match-status.scheduled {
+    background: rgba(69, 123, 157, 0.2);
+    color: var(--accent);
+}
+
+/* شبكة الاخبار */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.news-card {
+    background: var(--dark-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition);
+}
+
+.news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.news-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.news-card:hover .news-image {
+    transform: scale(1.05);
+}
+
+.news-content {
+    padding: 16px;
+}
+
+.news-category {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius-xl);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.news-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.news-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* جدول الترتيب */
+.standings-table-container {
+    background: var(--dark-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.standings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.standings-table th {
+    background: var(--dark-lighter);
+    padding: 14px 12px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--gray);
+}
+
+.standings-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 0.9rem;
+}
+
+.standings-table tr:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.standings-table .team-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: right;
+}
+
+.standings-table .team-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.standings-table .team-name {
+    font-weight: 600;
+}
+
+.standings-table .position {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.position.champions { background: rgba(233, 196, 106, 0.2); color: var(--warning); }
+.position.europa { background: rgba(69, 123, 157, 0.2); color: var(--accent); }
+.position.conference { background: rgba(108, 117, 125, 0.2); color: var(--gray); }
+.position.relegation { background: rgba(230, 57, 70, 0.2); color: var(--danger); }
+
+.points {
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* افضل الهدافين */
+.scorers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.scorer-card {
+    background: var(--dark-light);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition);
+    position: relative;
+}
+
+.scorer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.scorer-rank {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.scorer-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 12px;
+    border: 3px solid var(--primary);
+}
+
+.scorer-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.scorer-team {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 12px;
+}
+
+.scorer-goals {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.scorer-goals-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+}
+
+/* الانتقالات */
+.transfers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.transfer-card {
+    background: var(--dark-light);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition);
+}
+
+.transfer-card:hover {
+    background: var(--dark-lighter);
+}
+
+.transfer-player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.transfer-player img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.transfer-player-info h4 {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.transfer-player-info p {
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.transfer-arrow {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.transfer-teams {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.transfer-teams img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.transfer-fee {
+    background: var(--primary);
+    color: var(--white);
+    padding: 6px 14px;
+    border-radius: var(--radius-xl);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* الشريط الجانبي */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-widget {
+    background: var(--dark-light);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+}
+
+/* مباريات قادمة - الشريط الجانبي */
+.upcoming-match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.upcoming-match:last-child {
+    border-bottom: none;
+}
+
+.upcoming-team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.upcoming-team img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.upcoming-time {
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.upcoming-time .time {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.upcoming-time .date {
+    color: var(--gray);
+    font-size: 0.75rem;
+}
+
+/* ترتيب مصغر */
+.mini-standings-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 0.85rem;
+}
+
+.mini-standings-row:last-child {
+    border-bottom: none;
+}
+
+.mini-rank {
+    width: 24px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.mini-team {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-team img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.mini-points {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+/* الفوتر */
+.main-footer {
+    background: var(--dark-light);
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 20px 30px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.footer-desc {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--dark-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    background: var(--primary);
+    transform: translateY(-3px);
+}
+
+.footer-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--gray);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-right: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+/* عناصر مساعدة */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    z-index: 999;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* شريط الكوكيز */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark-light);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 16px 20px;
+    z-index: 1001;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.cookie-banner.show {
+    transform: translateY(0);
+}
+
+.cookie-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cookie-content p {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.cookie-content a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.cookie-accept {
+    padding: 10px 24px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.cookie-accept:hover {
+    background: var(--primary-dark);
+}
+
+/* spinner التحميل */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 12px;
+}
+
+.loading-spinner.small {
+    padding: 20px;
+}
+
+.loading-spinner p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--dark-lighter);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        height: 60px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .logo-icon {
+        font-size: 1.6rem;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 60px);
+        background: var(--dark-light);
+        padding: 20px;
+        transition: right 0.3s ease;
+        z-index: 999;
+        justify-content: flex-start;
+    }
+
+    .main-nav.active {
+        right: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 14px 16px;
+        border-radius: var(--radius-sm);
+    }
+
+    .nav-link.active::after {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .matches-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .scorers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .standings-table {
+        font-size: 0.8rem;
+    }
+
+    .standings-table th,
+    .standings-table td {
+        padding: 8px 6px;
+    }
+
+    .transfer-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .match-filters,
+    .league-tabs {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+    }
+
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .scorers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .match-teams {
+        gap: 8px;
+    }
+
+    .team-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .team-name {
+        font-size: 0.75rem;
+    }
+
+    .score {
+        font-size: 1.5rem;
+    }
+}
+
+/* تأثيرات اضافية */
+::selection {
+    background: var(--primary);
+    color: var(--white);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dark-lighter);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Animation for cards appearing */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.match-card,
+.news-card,
+.scorer-card,
+.transfer-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
